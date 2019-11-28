@@ -13,30 +13,35 @@ public partial class wfUsuarios : clPagina
     }
     private void llenarRpt()
     {
-        rpt1.DataSource = GetListaCentroMedico();
+        rpt1.DataSource = GetListaEspecialidad();
         rpt1.DataBind();        
     }
-
+    protected void rpt1_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "Eliminar")
+        {
+            //DeleteCentroMedico(int.Parse(e.CommandArgument));
+        }
+        llenarRpt();
+    }
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             Label lblcodigo = (Label)e.Item.FindControl("lblcodigo");
             Label lblNombre = (Label)e.Item.FindControl("lblNombre");
-            Label lbllat = (Label)e.Item.FindControl("lbllat");
-            Label lblalt = (Label)e.Item.FindControl("lblalt");
+            LinkButton lkbEliminar = (LinkButton)e.Item.FindControl("lkbEliminar");
 
-            clCentroMedico Objlista = (clCentroMedico)e.Item.DataItem;
+            clEspecialidad Objlista = (clEspecialidad)e.Item.DataItem;
 
-            lblcodigo.Text = Objlista.cmd_codigo.ToString();
-            lblNombre.Text = Objlista.cmd_nombre;
-            lbllat.Text = Objlista.cmd_latitud.ToString();
-            lblalt.Text = Objlista.cmd_longitud.ToString();
+            lblcodigo.Text = Objlista.emd_codigo.ToString();
+            lblNombre.Text = Objlista.emd_nombre;
 
-            lblNombre.Attributes.Add("cod", Objlista.cmd_codigo.ToString());
-            lblNombre.Attributes.Add("nom", Objlista.cmd_nombre);
-            lblNombre.Attributes.Add("lat", Objlista.cmd_latitud.ToString());
-            lblNombre.Attributes.Add("alt", Objlista.cmd_longitud.ToString());
+            lkbEliminar.CommandArgument = Objlista.emd_codigo.ToString();
+            lkbEliminar.CommandName = "Eliminar";
+
+            lblNombre.Attributes.Add("cod", Objlista.emd_codigo.ToString());
+            lblNombre.Attributes.Add("nom", Objlista.emd_nombre);
         }
     }
 
@@ -46,17 +51,15 @@ public partial class wfUsuarios : clPagina
     }
     private void Guardar()
     {
-        clCentroMedico obj = new clCentroMedico();
+        clEspecialidad obj = new clEspecialidad();
 
         if (txtCodigo.Text != "0" && txtCodigo.Text != "")
         {
-            obj.cmd_codigo = int.Parse(txtCodigo.Text);
+            obj.emd_codigo = int.Parse(txtCodigo.Text);
         }
-        obj.cmd_nombre = txtNombre.Text;
-        obj.cmd_latitud = double.Parse(txtLatitud.Text);
-        obj.cmd_longitud = double.Parse(txtAltitud.Text);
+        obj.emd_nombre = txtNombre.Text;
 
-        var i = GuardarCentroMedico(obj);
+        //var i = GuardarCentroMedico(obj);
 
         llenarRpt();
       

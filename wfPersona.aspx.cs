@@ -13,8 +13,8 @@ public partial class wfUsuarios : clPagina
     }
     private void llenarRpt()
     {
-        rpt1.DataSource = GetListaCentroMedico();
-        rpt1.DataBind();        
+        rpt1.DataSource = GetListaPersona();
+        rpt1.DataBind();
     }
 
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -23,20 +23,29 @@ public partial class wfUsuarios : clPagina
         {
             Label lblcodigo = (Label)e.Item.FindControl("lblcodigo");
             Label lblNombre = (Label)e.Item.FindControl("lblNombre");
-            Label lbllat = (Label)e.Item.FindControl("lbllat");
-            Label lblalt = (Label)e.Item.FindControl("lblalt");
+            Label lblApellido = (Label)e.Item.FindControl("lblApellido");
+            Label lblCorreo = (Label)e.Item.FindControl("lblCorreo");
+            Label lblFecha = (Label)e.Item.FindControl("lblFecha");
+            Label lblEstado = (Label)e.Item.FindControl("lblEstado");
+            Label lblDui = (Label)e.Item.FindControl("lblDui");
 
-            clCentroMedico Objlista = (clCentroMedico)e.Item.DataItem;
+            clPersona Objlista = (clPersona)e.Item.DataItem;
 
-            lblcodigo.Text = Objlista.cmd_codigo.ToString();
-            lblNombre.Text = Objlista.cmd_nombre;
-            lbllat.Text = Objlista.cmd_latitud.ToString();
-            lblalt.Text = Objlista.cmd_longitud.ToString();
+            lblcodigo.Text = Objlista.per_codigo.ToString();
+            lblNombre.Text = Objlista.per_nombre;
+            lblApellido.Text = Objlista.per_apellidos;
+            lblCorreo.Text = Objlista.per_correo;
+            lblFecha.Text = Objlista.per_fecha_nace.ToString("dd/MM/yyyy");
+            lblEstado.Text = Objlista.per_estado;
+            lblDui.Text = Objlista.per_dui;
 
-            lblNombre.Attributes.Add("cod", Objlista.cmd_codigo.ToString());
-            lblNombre.Attributes.Add("nom", Objlista.cmd_nombre);
-            lblNombre.Attributes.Add("lat", Objlista.cmd_latitud.ToString());
-            lblNombre.Attributes.Add("alt", Objlista.cmd_longitud.ToString());
+            lblNombre.Attributes.Add("cod", Objlista.per_codigo.ToString());
+            lblNombre.Attributes.Add("nom", Objlista.per_nombre);
+            lblNombre.Attributes.Add("ape", Objlista.per_apellidos);
+            lblNombre.Attributes.Add("cor", Objlista.per_correo);
+            lblNombre.Attributes.Add("est", Objlista.per_estado);
+            lblNombre.Attributes.Add("dui", Objlista.per_dui);
+            lblNombre.Attributes.Add("cla", Objlista.per_clave);
         }
     }
 
@@ -46,20 +55,23 @@ public partial class wfUsuarios : clPagina
     }
     private void Guardar()
     {
-        clCentroMedico obj = new clCentroMedico();
+        clPersona obj = new clPersona();
 
         if (txtCodigo.Text != "0" && txtCodigo.Text != "")
         {
-            obj.cmd_codigo = int.Parse(txtCodigo.Text);
+            obj.per_codigo = int.Parse(txtCodigo.Text);
         }
-        obj.cmd_nombre = txtNombre.Text;
-        obj.cmd_latitud = double.Parse(txtLatitud.Text);
-        obj.cmd_longitud = double.Parse(txtAltitud.Text);
+        obj.per_nombre = txtNombre.Text;
+        obj.per_apellidos = txtApellido.Text;
+        obj.per_dui = txtDui.Text;
+        obj.per_correo = txtCorreo.Text;
+        obj.per_clave = txtClave.Text;
+        obj.per_estado = ddlEsatdo.SelectedValue;
 
-        var i = GuardarCentroMedico(obj);
+        //var i = GuardarCentroMedico(obj);
 
         llenarRpt();
-      
+
 
     }
 }

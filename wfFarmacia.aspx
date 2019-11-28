@@ -130,11 +130,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentScript" Runat="Server">
     <script>
-        $(".btnEliminar").click(function () {
-            var r = confirm("Desea Eliminar este Registro?");
-            if (r == false) { return false; }
-        });
-
         $(".btnAdd").click(function () {
             console.log("click");
             $(".txtCodigo").val("0");

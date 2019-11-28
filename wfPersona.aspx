@@ -1,13 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="wfPersona.aspx.cs" Inherits="wfUsuarios" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
     <section class="content-header">
         <h1>
-            <asp:Label ID="lblTitulo" Text="" runat="server" >Listado de Centros Medicos:</asp:Label>
+            <asp:Label ID="lblTitulo" Text="" runat="server" >Listado de Personas:</asp:Label>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li class="active">Centros Medicos</li>
+            <li class="active">Personas</li>
         </ol>
     </section>
 
@@ -18,7 +19,7 @@
                 <div class="col-md-12" id="divClientes" runat="server">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Centros Medicos</h3>&nbsp&nbsp&nbsp <label class="btn btn-xs btnAdd btn-info"><i class="fa fa-plus" style="color:#fff;"></i></label>
+                            <h3 class="box-title">Personas</h3>&nbsp&nbsp&nbsp <label class="btn btn-xs btnAdd btn-info"><i class="fa fa-plus" style="color:#fff;"></i></label>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
@@ -35,8 +36,11 @@
                                                                     <th>#</th>
                                                                     <th>#</th>
                                                                     <th>Nombre</th>
-                                                                    <th>Latitud</th>
-                                                                    <th>Altitud</th>
+                                                                    <th>Apellido</th>
+                                                                    <th>Correo</th>
+                                                                    <th>Fecha Nacimiento</th>
+                                                                    <th>Estado</th>
+                                                                    <th>Dui</th>
                                                                     
                                                                 </tr>
                                                             </thead>
@@ -46,9 +50,11 @@
                                                         <tr><td></td>
                                                             <td><asp:label ID="lblcodigo" runat="server" Text="-"></asp:Label></td>
                                                             <td><asp:label ID="lblNombre" CssClass="onH btnEdit" runat="server" Text="-"></asp:Label></td>
-                                                            <td><asp:label ID="lbllat" runat="server" Text="-"></asp:Label></td>
-                                                            <td><asp:label ID="lblalt" runat="server" Text="-"></asp:Label></td>
-                                                           
+                                                            <td><asp:label ID="lblApellido" runat="server" Text="-"></asp:Label></td>
+                                                            <td><asp:label ID="lblCorreo" runat="server" Text="-"></asp:Label></td>
+                                                            <td><asp:label ID="lblFecha" runat="server" Text="-"></asp:Label></td>
+                                                            <td><asp:label ID="lblEstado" runat="server" Text="-"></asp:Label></td>
+                                                            <td><asp:label ID="lblDui" runat="server" Text="-"></asp:Label></td>                                          
                                                         </tr>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
@@ -77,24 +83,42 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="tituloModal">Centro Medico: <small id="mal">    </small></h4>
+                        <h4 class="modal-title" id="tituloModal">Persona: <small id="mal">    </small></h4>
                     </div>
                     <div class="modal-body" style="max-height: calc(100vh - 210px); overflow-y: auto;">
                         <div class="row">
-                            <div class="col-sm-4  col-xs-12">
+                            <div class="col-sm-4 hidden  col-xs-12">
                                 <label class="control-label">Codigo</label>
-                                <asp:TextBox runat="server" Enabled="false" CssClass=" form-control txtCodigo" ID="txtCodigo"></asp:TextBox>
+                                <asp:TextBox runat="server"  CssClass=" form-control txtCodigo" ID="txtCodigo"></asp:TextBox>
                             </div>
-                            <div class="col-sm-8  col-xs-12">
+                            <div class="col-sm-6  col-xs-12">
                                 <label class="control-label">Nombre</label>
                                 <asp:TextBox runat="server" CssClass=" form-control txtNombre " ID="txtNombre"></asp:TextBox>
                             </div>
                             <div class="col-sm-6  col-xs-12">
-                                <label class="control-label">Latitud</label>
-                                <asp:TextBox runat="server" TextMode="Number" CssClass=" form-control txtLatitud " ID="txtLatitud"></asp:TextBox>
-                            </div><div class="col-sm-6  col-xs-12">
-                                <label class="control-label">Altitud</label>
-                                <asp:TextBox runat="server" TextMode="Number" CssClass=" form-control txtAltitud " ID="txtAltitud"></asp:TextBox>
+                                <label class="control-label">Apellido</label>
+                                <asp:TextBox runat="server" CssClass=" form-control txtApellido " ID="txtApellido"></asp:TextBox>
+                            </div>
+                             <div class="col-sm-6  col-xs-12">
+                                <label class="control-label">Dui</label>
+                                <asp:TextBox runat="server" CssClass=" form-control txtDui " ID="txtDui"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6  col-xs-12">
+                                <label class="control-label">Correo</label>
+                                <asp:TextBox runat="server"  CssClass=" form-control txtCorreo " ID="txtCorreo"></asp:TextBox>
+                            </div>
+                           
+                            <div class="col-sm-6  col-xs-12">
+                                <label class="control-label">Clave</label>
+                                <asp:TextBox runat="server"  CssClass=" form-control txtClave " ID="txtClave"></asp:TextBox>
+                            </div>
+                             <div class="col-sm-6  col-xs-12">
+                                <label class="control-label">Estado</label>
+                                <asp:DropDownList CssClass="ddlEsatdo form-control" runat="server" ID="ddlEsatdo" >
+                                    <asp:ListItem value="A" text="Activo"  ></asp:ListItem>
+                                    <asp:ListItem value="I" text="Inactivo"  ></asp:ListItem>
+
+                                </asp:DropDownList>
                             </div>
                             <%-- para el reporte --%>
                         </div>
@@ -114,8 +138,10 @@
             console.log("click");
             $(".txtCodigo").val("0");
             $(".txtNombre").val("");
-            $(".txtLatitud").val("");
-            $(".txtAltitud").val("");
+            $(".txtApellido").val("");
+            $(".txtCorreo").val("");
+            $(".txtClave").val("");
+            $(".txtDui").val("");
             $("#mal").text("(Nuevo)");
             $("#modal").modal("show");
         })
@@ -123,8 +149,11 @@
 
             $(".txtCodigo").val($(this).attr("cod"));
             $(".txtNombre").val($(this).attr("nom"));
-            $(".txtLatitud").val($(this).attr("lat"));
-            $(".txtAltitud").val($(this).attr("alt"));
+            $(".txtApellido").val($(this).attr("ape"));
+            $(".txtCorreo").val($(this).attr("cor"));
+            $(".ddlEsatdo").val($(this).attr("est"));
+            $(".txtDui").val($(this).attr("dui"));
+            $(".txtClave").val($(this).attr("cla"));
             $("#mal").text("(" + $(this).attr("cod") + ")");
 
             $("#modal").modal("show");
