@@ -11,7 +11,20 @@ public partial class wfPruebaWs : clPagina
     {
         if (!IsPostBack)
         {
-            lbl.Text = "Respuesta: "+ GetListaCentroMedico();
+            List<clCentroMedico> lista = GetListaCentroMedico();
+            lbl.Text = "Respuesta: " + lista.Count;
+
+
+            clCentroMedico obj = new clCentroMedico();
+
+
+            obj.cmd_codigo = 0;
+            obj.cmd_latitud = 12.85869;
+            obj.cmd_longitud = 14.52534;
+            obj.cmd_nombre = "Cambio desde la web";
+
+          //  GuardarCentroMedico(obj).Wait();
+
         }
     }
 }

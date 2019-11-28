@@ -12,7 +12,7 @@
     
      <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Rent a Car Utec Admin</title>
+  <title>Medicanet</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -91,11 +91,9 @@
                 <!-- Menu Body -->
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                  </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                    <a href="#" class=""></a>
+                      <asp:Button CssClass="btn btn-danger btn-block btn-flat" ID="btbCerrar" Text="Cerrar Sesión" runat="server" />
                   </div>
                 </li>
               </ul>
@@ -126,16 +124,19 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="active treeview menu-open">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Reportes</span>
+              <i class="fa fa-dashboard"></i> <span>Catalogos</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="wfUsuarios.aspx"><i class="fa fa-circle-o"></i> Reporte De Ventas</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Reporte De Autos</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Reporte De Rentas</a></li>
-              <li><a href="wfUsuarios.aspx"><i class="fa fa-circle-o"></i> Reporte De Usuarios</a></li>
+              <li><a href="wfCentroMedico.aspx"><i class="fa fa-circle-o"></i>Centros Medicos</a></li>
+              <li><a href="wfEspecialidad.aspx"><i class="fa fa-circle-o"></i>Especialidades</a></li>
+              <li><a href="wfFarmacia.aspx"><i class="fa fa-circle-o"></i>Farmacias</a></li>
+              <li><a href="wfMedicamento.aspx"><i class="fa fa-circle-o"></i>Medicamnetos</a></li>
+              <li><a href="wfMedico.aspx"><i class="fa fa-circle-o"></i>Medicos</a></li>
+              <li><a href="wfPersona.aspx"><i class="fa fa-circle-o"></i>Personas</a></li>
+              <li><a href="wfTipoHistorial.aspx"><i class="fa fa-circle-o"></i>Tipo Historial Medico</a></li>
             </ul>
           </li>
 
@@ -157,7 +158,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2019-2020 <a href="https://adminlte.io">Renta Card</a>.</strong> All rights
+    <strong>Copyright &copy; 2019-2020 <a href="https://adminlte.io">MedicaNet</a>.</strong> All rights
     reserved.
   </footer>
 </div>

@@ -6,15 +6,16 @@ using System.Web;
 /// <summary>
 /// Descripción breve de clCentroMedico
 /// </summary>
-public class clCentroMedico
+public class clMedicamento
 {
    
-    public int cmd_codigo;
-    public String cmd_nombre;
-    public double cmd_latitud;
-    public double cmd_longitud;
+    public int mdc_codigo;
+    public String mdc_nombre;
+    public String mdc_descripcion;
+    public String mdc_medida;
 
-    public clCentroMedico()
+
+    public clMedicamento()
     {
         //
         // TODO: Agregar aquí la lógica del constructor
